@@ -110,6 +110,21 @@
     }
     
 
+    .card-buttons {
+      display: flex;
+      flex-wrap: wrap;     /* allows stacking instead of clipping */
+      gap: 12px;           /* spacing between buttons */
+      margin-top: 16px;
+    }
+
+    /* Mobile optimization */
+    @media (max-width: 480px) {
+    .card-buttons .button {
+      flex: 1 1 100%;   /* full width buttons on mobile */
+      text-align: center;
+      }
+    }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -215,9 +230,10 @@
       <div class="card">
         <h3>Guarding their Hearts, Minds, and Screens</h3>
         <p>A presentation on real world threats and how to protect your children in the digital age.</p>
-        <br> 
+        <div class="card-buttons">
           <a class="button" href="#">Download Slides</a>
-          <a class="button" href="https://drive.google.com/file/d/14hb6ChBsVCcEGeueIfqe4PckHUAbLFXs/view?usp=drive_link">Download Digital Handout</a>
+          <a class="button" href="#">Download Digital Handout</a>
+        </div>
       </div>
 
       <br>
@@ -225,10 +241,10 @@
       <div class="card">
         <h3>Defensive Deception: CISO Meeting 5/30/26</h3>
         <p>A strategic approach to using deception techniques to detect and respond to adversarial activities.</p>
-        <br>
+        <div class="card-buttons">
           <a class="button" href="#">Download Slides</a>
-          <a class="button" href="#">Download Digital Handout</a>
-          <a class="button" href="#">Book Link</a>
+          <a class="button" href="https://drive.google.com/file/d/14hb6ChBsVCcEGeueIfqe4PckHUAbLFXs/view?usp=drive_link">Download Digital Handout</a>
+        </div>
       </div>
 
       <br>
@@ -236,14 +252,10 @@
       <div class="card">
         <h3>One Query to Rule Them All</h3>
         <p>A KQL repository for blue teams to assist in threat detection and response.</p>
-        <br>
-          <a class="button" href="#">Take Me There</a>
+        <div class="card-buttons">
+          <a class="button" href="https://github.com/Ryderhax/OneQueryToRuleThemAll">Take Me There</a>
+        </div>
       </div>  
-
-
-
-
-
      </div>
   </section>
 
