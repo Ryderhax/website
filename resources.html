@@ -1,23 +1,34 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Trenton Goss | Security Engineer</title>
-  <meta name="description" content="Security Engineer focused on detection engineering, defensive deception, and pragmatic security governance." />
+  <title>Resources | Trenton Goss</title>
+  <meta name="description" content="Cybersecurity resources, presentations, and defender tools from Trenton Goss." />
+  <meta property="og:title" content="Resources | Trenton Goss" />
+  <meta property="og:description" content="Cybersecurity resources, presentations, and defender tools." />
+  <meta property="og:type" content="website" />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
 
-  <!-- Design Stuffs -->
   <style>
     :root {
-      --bg: #0a0a0a;
-      --surface: #111111;
-      --border: #262626;
-      --text: #fafafa;
-      --muted: #a1a1aa;
-      --accent: #e5e5e5;
-      --radius: 16px;
+      color-scheme: dark;
+      --bg: #06080c;
+      --surface: rgba(15, 20, 29, 0.88);
+      --surface-strong: #121824;
+      --border: rgba(148, 163, 184, 0.2);
+      --text: #f8fafc;
+      --muted: #a8b3c3;
+      --muted-strong: #d7dee9;
+      --accent: #4f8cff;
+      --accent-strong: #9cc8ff;
+      --gold: #e8bd6d;
+      --ink: #06080c;
+      --radius: 8px;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
     }
 
     * {
@@ -26,11 +37,25 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg);
+      min-width: 320px;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        linear-gradient(180deg, rgba(6, 8, 12, 0.86), rgba(6, 8, 12, 1) 58%),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 96px),
+        var(--bg);
       color: var(--text);
       line-height: 1.6;
+      text-rendering: optimizeLegibility;
+    }
+
+    img,
+    svg {
+      display: block;
     }
 
     a {
@@ -38,229 +63,675 @@
       text-decoration: none;
     }
 
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 24px;
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
     }
 
-    section {
-      padding: 50px 0;
-    }
-
-    h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      animation: fadeUp 0.8s ease forwards;
-    }
-
-    h2 {
-      font-size: 1.75rem;
-      font-weight: 500;
-      margin-bottom: 32px;
-      text-align: center;
-    }
-
-    h3 {
-      font-size: 1.25rem;
-      font-weight: 500;
-    }
-
-    p {
-      color: var(--muted);
-      max-width: 700px;
-      text-align: center;
-    }
-
-    .hero-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    
-    .actions {
-      margin-top: 32px;
-      display: flex;
-      gap: 16px;
-    }
-
-    .button {
-      padding: 12px 20px;
+    .skip-link {
+      position: absolute;
+      left: 24px;
+      top: 16px;
+      z-index: 100;
+      transform: translateY(-140%);
       border-radius: var(--radius);
-      border: 1px solid var(--border);
-      background: transparent;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .button.primary {
       background: var(--accent);
-      color: #000;
-      border-color: var(--accent);
+      color: var(--ink);
+      padding: 10px 14px;
+      font-weight: 700;
+      transition: transform 160ms ease;
     }
 
-    .button:hover {
-      transform: translateY(-1px);
-      opacity: 0.9;
-    background-color: #2e43cc; /* Changes to Green */
-    }
-    
-
-    .card-buttons {
-      display: flex;
-      flex-wrap: wrap;     /* allows stacking instead of clipping */
-      gap: 12px;           /* spacing between buttons */
-      margin-top: 16px;
+    .skip-link:focus {
+      transform: translateY(0);
     }
 
-    /* Mobile optimization */
-    @media (max-width: 480px) {
-    .card-buttons .button {
-      flex: 1 1 100%;   /* full width buttons on mobile */
-      text-align: center;
-      }
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+      background: rgba(6, 8, 12, 0.82);
+      backdrop-filter: blur(18px);
     }
 
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 24px;
-      transition: transform 0.2s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-    }
-
-    .card p {
-      margin-top: 8px;
-      text-align: left;
-    }
-
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 32px 0;
-      margin-top: 48px;
-    }
-
-    footer .container {
+    .nav {
+      min-height: 72px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(79, 140, 255, 0.4);
+      border-radius: var(--radius);
+      display: grid;
+      place-items: center;
+      background: rgba(79, 140, 255, 0.12);
+      color: var(--accent-strong);
+      box-shadow: inset 0 0 24px rgba(79, 140, 255, 0.08);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+    .nav-links a {
+      border-radius: var(--radius);
+      padding: 9px 12px;
+      transition: color 160ms ease, background-color 160ms ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a[aria-current="page"] {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+    }
+
+    .nav-links .nav-cta {
+      border: 1px solid rgba(79, 140, 255, 0.32);
+      color: var(--accent-strong);
+    }
+
+    .page-shell {
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+      isolation: isolate;
+    }
+
+    .page-shell::before,
+    .page-shell::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .page-shell::before {
+      background:
+        linear-gradient(135deg, rgba(79, 140, 255, 0.18), transparent 34%),
+        linear-gradient(315deg, rgba(232, 189, 109, 0.1), transparent 28%);
+      opacity: 0.9;
+    }
+
+    .page-shell::after {
+      background:
+        linear-gradient(rgba(79, 140, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79, 140, 255, 0.08) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(180deg, #000, transparent 88%);
+      opacity: 0.22;
+    }
+
+    .intro {
+      padding: 86px 0 40px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      border: 1px solid rgba(79, 140, 255, 0.28);
+      border-radius: var(--radius);
+      background: rgba(6, 8, 12, 0.58);
+      color: var(--accent-strong);
+      padding: 8px 12px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 18px rgba(79, 140, 255, 0.9);
+    }
+
+    h1 {
+      max-width: 780px;
+      margin-top: 22px;
+      font-size: 4.1rem;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .intro-copy {
+      max-width: 720px;
+      margin-top: 20px;
+      color: var(--muted-strong);
+      font-size: 1.14rem;
+    }
+
+    .intro-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid rgba(148, 163, 184, 0.24);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      padding: 11px 15px;
+      font-weight: 800;
+      line-height: 1;
+      transition: transform 160ms ease, border-color 160ms ease, background-color 160ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      border-color: rgba(79, 140, 255, 0.55);
+      background: rgba(79, 140, 255, 0.12);
+    }
+
+    .button.primary {
+      border-color: transparent;
+      background: var(--accent);
+      color: var(--ink);
+      box-shadow: 0 14px 34px rgba(79, 140, 255, 0.24);
+    }
+
+    .button.primary:hover {
+      background: var(--accent-strong);
+    }
+
+    .resource-section {
+      padding: 42px 0 82px;
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(280px, 1.1fr);
+      align-items: end;
+      gap: 32px;
+      margin-bottom: 28px;
+    }
+
+    .section-kicker {
+      color: var(--gold);
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin-top: 8px;
+      font-size: 2.25rem;
+      line-height: 1.1;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      max-width: 650px;
+    }
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .resource-card {
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
+    }
+
+    .resource-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(79, 140, 255, 0.34);
+      background: rgba(18, 24, 36, 0.96);
+    }
+
+    .resource-card.featured {
+      grid-column: span 2;
+    }
+
+    .resource-media {
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      object-fit: cover;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+    }
+
+    .resource-body {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      padding: 24px;
+    }
+
+    .card-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      color: var(--gold);
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .resource-card h3 {
+      margin-top: 18px;
+      font-size: 1.18rem;
+      line-height: 1.25;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .resource-card p {
+      flex: 1;
+      margin-top: 10px;
+      color: var(--muted);
+    }
+
+    .card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .status-pill {
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--muted-strong);
+      padding: 9px 12px;
+      font-size: 0.9rem;
+      font-weight: 800;
     }
 
     .socials {
       display: flex;
-      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
       color: var(--muted);
-      font-size: 0.9rem;
     }
 
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
+    .socials a {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.045);
+      transition: color 160ms ease, transform 160ms ease, border-color 160ms ease;
+    }
+
+    .socials a:hover {
+      transform: translateY(-2px);
+      border-color: rgba(79, 140, 255, 0.45);
+      color: var(--accent-strong);
+    }
+
+    .contact-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 30px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(79, 140, 255, 0.14), transparent 32%),
+        linear-gradient(315deg, rgba(232, 189, 109, 0.12), transparent 34%),
+        var(--surface-strong);
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-panel h2 {
+      margin-top: 0;
+      font-size: 1.7rem;
+    }
+
+    .contact-panel p {
+      margin-top: 8px;
+      color: var(--muted);
+      max-width: 660px;
+    }
+
+    .footer-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    .site-footer {
+      padding: 30px 0 42px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .site-footer .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border-top: 1px solid rgba(148, 163, 184, 0.14);
+      padding-top: 24px;
+    }
+
+    @media (max-width: 960px) {
+      .resource-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
+
+      .resource-card.featured {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 16px 0;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+
+      .intro {
+        padding-top: 62px;
+      }
+
+      h1 {
+        font-size: 3.05rem;
+      }
+
+      .section-heading,
+      .contact-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-actions {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .brand span:last-child {
+        display: none;
+      }
+
+      .nav-links {
+        gap: 4px;
+        font-size: 0.86rem;
+      }
+
+      .nav-links a {
+        padding: 8px 10px;
+      }
+
+      h1 {
+        font-size: 2.55rem;
+      }
+
+      h2 {
+        font-size: 1.85rem;
+      }
+
+      .intro-copy {
+        font-size: 1.02rem;
+      }
+
+      .button,
+      .status-pill {
+        width: 100%;
+      }
+
+      .resource-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .resource-card.featured {
+        grid-column: auto;
+      }
+
+      .resource-body,
+      .contact-panel {
+        padding: 20px;
+      }
+
+      .site-footer .container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
       }
     }
   </style>
 </head>
 
-<!-- Meat and Potatoes --> 
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-<!-- Jesus Loves You! -->
+  <header class="site-header">
+    <div class="container nav" aria-label="Main navigation">
+      <a class="brand" href="index.html" aria-label="Trenton Goss home">
+        <span class="brand-mark">TG</span>
+        <span>Trenton Goss</span>
+      </a>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container hero-content">
-      
-
-      <h1>Resources</h1>
-
-      <p>
-        A collection of resources, presentations, and tools I've created or contributed to in the field of cybersecurity. 
-      </p>
-      
-      <br>
-
-  <!-- Contact Icons--> 
-      <div class="socials">
-        <a href="https://github.com/Ryderhax/OneQueryToRuleThemAll" target="_blank" title="GitHub">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-        </a>
-        <a href="https://www.linkedin.com/in/trentongoss/" target="_blank" title="LinkedIn">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
-        </a>
-        <a href="mailto:info@ryderhax.com" title="Email">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-        </a>
-      </div>
-
-
-<!-- Buttons -->
-      <div class="actions">
-        <a class="button" href="index.html">Home</a>
-        <a class="button" href="https://docs.google.com/document/d/16_K_GBcDHJaBXQBbBw_MTlzV8usdVpir5XsVDt-Hc3U/edit?usp=sharing"
-            target="_blank" rel="noopener noreferrer" download >Resume</a>
-        <a class="button" href="https://www.credly.com/users/trenton-goss" 
-            target="_blank" rel="noopener noreferrer" >Certifications</a>
-      </div>
+      <nav class="nav-links" aria-label="Site sections">
+        <a href="index.html">Home</a>
+        <a href="resources.html" aria-current="page">Resources</a>
+        <a href="#contact">Contact</a>
+        <a class="nav-cta" href="https://docs.google.com/document/d/16_K_GBcDHJaBXQBbBw_MTlzV8usdVpir5XsVDt-Hc3U/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Resume</a>
+      </nav>
     </div>
-  </section>
+  </header>
 
-  <!-- Experience -->
-  <section>
+  <main id="main">
+    <div class="page-shell">
+      <section class="intro" aria-labelledby="page-title">
+        <div class="container">
+          <p class="eyebrow">Resource Library</p>
+          <h1 id="page-title">Presentations, tools, and field notes for practical security work.</h1>
+          <p class="intro-copy">
+            A curated set of cybersecurity resources I have created or contributed to, spanning defensive deception, KQL detection work, and digital safety education.
+          </p>
+
+          <div class="intro-actions" aria-label="Resource shortcuts">
+            <a class="button primary" href="#resources">
+              Browse Resources
+              <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M13.2 5.3a1 1 0 0 1 1.4 0l5.1 5.1a1 1 0 0 1 0 1.4l-5.1 5.1a1 1 0 1 1-1.4-1.4l3.4-3.4H5a1 1 0 1 1 0-2h11.6l-3.4-3.4a1 1 0 0 1 0-1.4Z" />
+              </svg>
+            </a>
+            <a class="button" href="https://www.credly.com/users/trenton-goss" target="_blank" rel="noopener noreferrer">Certifications</a>
+          </div>
+
+          <div class="socials" aria-label="Contact links">
+            <a href="https://github.com/Ryderhax/OneQueryToRuleThemAll" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.23c-3.34.73-4.03-1.42-4.03-1.42-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.21.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.19.69.8.58A12.01 12.01 0 0 0 24 12c0-6.63-5.37-12-12-12Z" />
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/trentongoss/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43A2.06 2.06 0 1 1 5.34 3.3a2.06 2.06 0 0 1 0 4.13Zm1.78 13.02H3.56V9h3.56v11.45ZM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0Z" />
+              </svg>
+            </a>
+            <a href="mailto:info@ryderhax.com" aria-label="Email">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M20 4H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h16a2 2 0 0 0 2-2V6c0-1.1-.9-2-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="resource-section" id="resources" aria-labelledby="resources-title">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Available Resources</p>
+              <h2 id="resources-title">Defender-ready material without the filler.</h2>
+            </div>
+            <p>
+              Use these for awareness sessions, defensive planning, threat detection, and security team enablement.
+            </p>
+          </div>
+
+          <div class="resource-grid">
+            <article class="resource-card">
+              <div class="resource-body">
+                <div class="card-topline">
+                  <span>Presentation</span>
+                  <span>Deception</span>
+                </div>
+                <h3>Intro to Defensive Deception</h3>
+                <p>
+                  A strategic approach to using deception techniques to detect and respond to adversarial activities.
+                </p>
+                <div class="card-actions">
+                  <a class="button primary" href="https://drive.google.com/file/d/1MVTmMvpa8JK72FxnNIhbNGVbasmf_OMD/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+                    Slides
+                    <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <path fill="currentColor" d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4L17.6 5H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z" />
+                    </svg>
+                  </a>
+                  <a class="button" href="https://drive.google.com/file/d/14hb6ChBsVCcEGeueIfqe4PckHUAbLFXs/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Handout</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="resource-card">
+              <div class="resource-body">
+                <div class="card-topline">
+                  <span>KQL</span>
+                  <span>Detection</span>
+                </div>
+                <h3>One Query to Rule Them All</h3>
+                <p>
+                  A KQL repository to assist teams with threat detection or interesting items to look out for in their environment.
+                </p>
+                <div class="card-actions">
+                  <a class="button primary" href="https://github.com/Ryderhax/OneQueryToRuleThemAll" target="_blank" rel="noopener noreferrer">
+                    Repository
+                    <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <path fill="currentColor" d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4L17.6 5H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <article class="resource-card featured">
+              <img class="resource-media" src="assets/gthms.jpg" alt="Guarding their Hearts, Minds, and Screens presentation cover" />
+              <div class="resource-body">
+                <div class="card-topline">
+                  <span>Presentation</span>
+                  <span>Digital Safety</span>
+                </div>
+                <h3>Guarding their Hearts, Minds, and Screens</h3>
+                <p>
+                  A presentation on real-world threats and how to protect your children in the digital age.
+                </p>
+                <div class="card-actions" aria-label="Guarding their Hearts, Minds, and Screens resource status">
+                  <span class="status-pill">Slides coming soon</span>
+                  <span class="status-pill">Handout coming soon</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="resource-section" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="contact-panel">
+          <div>
+            <p class="section-kicker">Contact</p>
+            <h2 id="contact-title">Need a resource or workshop?</h2>
+            <p>
+              Reach out for presentation material, security education, detection engineering, or defensive deception work.
+            </p>
+          </div>
+
+          <div class="footer-actions">
+            <a class="button primary" href="mailto:info@ryderhax.com">Email Me</a>
+            <a class="button" href="https://www.linkedin.com/in/trentongoss/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
     <div class="container">
-      <div class="card">
-        <h3>Guarding their Hearts, Minds, and Screens</h3>
-        <p>A presentation on real world threats and how to protect your children in the digital age.</p>
-        <div class="card-buttons">
-          <a class="button" href="#">Download Slides</a>
-          <a class="button" href="#">Download Digital Handout</a>
-        </div>
-      </div>
-
-      <br>
-
-      <div class="card">
-        <h3>Intro to Defensive Deception</h3>
-        <p>A strategic approach to using deception techniques to detect and respond to adversarial activities.</p>
-        <div class="card-buttons">
-          <a class="button" href="https://drive.google.com/file/d/1MVTmMvpa8JK72FxnNIhbNGVbasmf_OMD/view?usp=sharing">Download Slides</a>
-          <a class="button" href="https://drive.google.com/file/d/14hb6ChBsVCcEGeueIfqe4PckHUAbLFXs/view?usp=drive_link">Download Digital Handout</a>
-        </div>
-      </div>
-
-      <br>
-
-      <div class="card">
-        <h3>One Query to Rule Them All</h3>
-        <p>A KQL repository to assist teams with threat detection or interesting items to look out for in their environment.</p>
-        <div class="card-buttons">
-          <a class="button" href="https://github.com/Ryderhax/OneQueryToRuleThemAll">Take Me There</a>
-        </div>
-      </div>  
-     </div>
-  </section>
-
-  <!-- this entire thing was vibe coded lul ai for the win -->
+      <p>&copy; 2026 Trenton Goss. All rights reserved.</p>
+      <p>Ryderhax.com</p>
+    </div>
+  </footer>
 </body>
 </html>
-<html lang="en">
-<head>
