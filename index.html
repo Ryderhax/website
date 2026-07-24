@@ -464,6 +464,24 @@
       transform: translate(3px, -3px);
     }
 
+    .card-link-disabled {
+      cursor: not-allowed;
+      color: var(--muted);
+      opacity: 0.82;
+    }
+
+    .card-link-disabled::after {
+      content: "Coming soon";
+      border: 1px solid rgba(232, 189, 109, 0.3);
+      border-radius: 999px;
+      padding: 3px 8px;
+      color: var(--gold);
+      font-size: 0.68rem;
+      line-height: 1;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
     .log {
       overflow: hidden;
       border: 1px solid var(--line);
@@ -1006,8 +1024,17 @@
             </div>
             <h3>A.T.O.M.</h3>
             <p>
-              An AI agent that assists security teams with actionable threat, vulnerability, and attack intelligence.
+              Inspired by Jarvis, ATOM is a multi-agent AI assistant that gives security and IT teams one place to triage alerts, surface vulnerabilities and misconfigurations, run purple-team and tabletop scenarios, and complete security questionnaires.
             </p>
+            <span
+              class="card-link card-link-disabled"
+              role="button"
+              aria-disabled="true"
+              tabindex="0"
+              title="ATOM preview coming soon"
+            >
+              Preview ATOM
+            </span>
           </article>
 
           <article class="project-card">
